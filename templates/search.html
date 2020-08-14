@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    {% if found==0 %}
+        <h1 class="alert alert-danger">No Book Found!</h1>
+        <a href="/"><button class="btn btn-primary">Back to Search</button></a>
+    {% else %}
+        <table class="table table-striped">
+            <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                <th>Year</th>
+            </tr>
+            {% for i in range(n) %}
+                <tr>
+                    <td>{{ i+1 }}</td>
+                    <td><a href="/book/{{ rows[i][0] }}">{{ rows[i][1] }}</a></td>
+                    <td>{{ rows[i][0] }}</td>
+                    <td>{{ rows[i][2] }}</td>
+                    <td>{{ rows[i][3] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ book['title']}}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-3">
+            <img src="http://covers.openlibrary.org/b/isbn/{{ book['isbn'] }}.jpg" class="img-fluid"/>
+        </div>
+        <div class="col-md-6">
+            <br>
+            <h1>{{ book['title'] }}</h1>
+            <h5>Written by: {{ book['author'] }}</h5>
+            <h5>Published: {{ book['year'] }}</h5>
+            <h5>ISBN: {{ book['isbn'] }}</h5>
+        </div>
+        <div class="col-3">
+            <br>
+            <img src="{{url_for('static', filename='goodreads.png')}}" alt="Goodreads Logo" class="img-fluid">
+            <br>
+            <br>
+            <h5>Rating: {{ book['rating'] }}</h5>
+            <h5>No. of Ratings: {{ book['count'] }}</h5>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <h3>Reviews From Users:</h3>
+        {% if not check %}
+        </div>
+            <div class="row">
+                <p>No one has written a review yet. Be the first one!</p>
+            </div>
+        {% else %}
+            <table class="table thead-light">
+                <tr>
+                    <th>Username</th>
+                    <th>Rating</th>
+                    <th colspan="2">Review</th>
+                </tr>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review[0] }}</td>
+                        <td>{{ review[1] }}</td>
+                        <td>{{ review[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    <br>
+    <div class="row">
+        <h3>Write a Review!</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <form method="POST" class="form-border">
+                <div class="form-group">
+                    <textarea name="review" class="form-control" id="review" rows=2 placeholder="Book Review!" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select class="form-control" id="rating" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="col-centered">
+        <div class="row-centered">
+            <h1>Search Books!</h1>
+        </div>
+        <div class="row-centered">
+            <div class="col-lg-offset-8">
+                <form action="/search" method="POST">
+                    <div class="form-group">
+                        <input name="search" placeholder="ISBN, Title, or Author" class="form-control">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
